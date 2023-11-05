@@ -1,6 +1,6 @@
 from common.file_util import *
 from common.mysql_db_manager import *
-from wp_settings import *
+from db_settings import *
 
 # 出力フォルダ
 OUTPUT_DIR = 'output/posts/'

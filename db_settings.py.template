@@ -1,0 +1,6 @@
+# DB接続設定ファイル
+# db_settings.py.template -> db_settings.py にリネームして使用する
+WORDPRESS_DB_USER = ''
+WORDPRESS_DB_PASSWORD = ''
+WORDPRESS_DB_HOST = ''
+WORDPRESS_DB_NAME = ''
