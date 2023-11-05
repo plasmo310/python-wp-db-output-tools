@@ -10,13 +10,12 @@ SQL_MST_POSTS = \
     f'''
 SELECT
     wp_posts_A.id,
-    wp_posts_A.post_date,
+    wp_posts_A.post_type,
     wp_posts_A.post_title,
     wp_posts_A.post_name,
-    wp_posts_A.post_modified,
-    wp_posts_A.post_type,
-    wp_postmeta.meta_value,
-    wp_posts_B.guid as featured_image
+    wp_posts_B.guid as featured_image,
+    wp_posts_A.post_date,
+    wp_posts_A.post_modified
 FROM
     wp_posts as wp_posts_A
     LEFT JOIN
@@ -35,9 +34,9 @@ SQL_MST_TERMS = \
     f'''
 SELECT
     wp_terms.term_id as id,
+    wp_term_taxonomy.taxonomy,
     wp_terms.name,
     wp_terms.slug,
-    wp_term_taxonomy.taxonomy,
     wp_term_taxonomy.parent
 FROM
     wp_terms
