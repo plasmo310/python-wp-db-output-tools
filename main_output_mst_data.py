@@ -9,17 +9,26 @@ OUTPUT_DIR = 'output/db/'
 SQL_MST_POSTS = \
     f'''
 SELECT
-    id,
-    post_date,
-    post_title,
-    post_name,
-    post_modified,
-    post_type
+    wp_posts_A.id,
+    wp_posts_A.post_date,
+    wp_posts_A.post_title,
+    wp_posts_A.post_name,
+    wp_posts_A.post_modified,
+    wp_posts_A.post_type,
+    wp_postmeta.meta_value,
+    wp_posts_B.guid as featured_image
 FROM
-    wp_posts
+    wp_posts as wp_posts_A
+    LEFT JOIN
+        wp_postmeta
+    ON  wp_posts_A.id = wp_postmeta.post_id
+    AND wp_postmeta.meta_key = '_thumbnail_id'
+    LEFT JOIN
+        wp_posts as wp_posts_B
+    ON  wp_posts_B.id = wp_postmeta.meta_value
 WHERE
-    post_type IN('post', 'page')
-AND post_status = 'publish'
+    wp_posts_A.post_type IN('post', 'page')
+AND wp_posts_A.post_status = 'publish'
     '''
 
 SQL_MST_TERMS = \
