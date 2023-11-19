@@ -5,5 +5,5 @@
 
 ## 使い方
 * <code>db_settings.py.template</code>にDB情報を設定し、<code>db_settings.py</code>にリネームする
-* <code>output/db</code>、<code>output/posts</code>フォルダを作成する
-* <code>main_output_mst_data.py</code>、<code>main_output_post_content.py</code>をそれぞれ実行する
+* <code>output/db</code>、<code>output/posts</code>、<code>output/posts_gql</code>フォルダを作成する
+* <code>main_output_mst_data.py</code>、<code>main_output_post_content.py</code>、<code>main_output_gql_post_content.py</code>をそれぞれ実行する
