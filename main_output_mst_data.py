@@ -56,11 +56,34 @@ FROM
     wp_term_relationships
     '''
 
+SQL_MST_COMMENTS = \
+    f'''
+SELECT 
+	wp_comments .comment_ID as id,
+	wp_comments .comment_parent as parent_id,
+	wp_posts.post_name as post_slug,
+	wp_comments .comment_author as author_name,
+	wp_comments .user_id as author_type,
+	wp_comments .comment_author_email as author_email,
+	REPLACE(REPLACE(wp_comments.comment_content, CHAR(13), '<br>'), CHAR(10), '<br>') AS comment_content,
+	wp_comments .comment_approved as comment_status,
+	wp_comments .comment_date as comment_date
+FROM
+	wp_comments
+INNER JOIN
+	wp_posts
+ON
+	wp_comments. comment_post_ID = wp_posts.ID
+WHERE
+	comment_approved = 1
+    '''
+
 # 出力定義
 OUTPUT_MST_DATA_INFOS = [
     ['mst_posts', SQL_MST_POSTS],
     ['mst_terms', SQL_MST_TERMS],
     ['mst_term_relationships', SQL_MST_TERM_RELATIONSHIPS],
+    ['mst_comments', SQL_MST_COMMENTS],
 ]
 
 
